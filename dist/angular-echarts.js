@@ -98,9 +98,11 @@ function getLinkFunction($http, theme, util, type) {
                 return;
             }
             var options;
+            var chartTheme = theme.get(scope.config.theme || 'macarons');
+            chartTheme.categoryAxis.axisLabel.margin = -(scope.config.height-30);
             getSizes(scope.config);
             if (!chart) {
-                chart = echarts.init(ndWrapper, theme.get(scope.config.theme || 'macarons'));
+                chart = echarts.init(ndWrapper, chartTheme);
             }
             if (scope.config.event) {
                 if (!Array.isArray(scope.config.event)) {
@@ -258,7 +260,8 @@ angular.module('angular-echarts.util', []).factory('util', function () {
                 datapoints.push(datapoint.y);
             });
             var conf = {
-                    type: type || 'line',
+                    type: serie.type,
+                    smooth: true,
                     name: serie.name,
                     data: datapoints
                 };
@@ -266,6 +269,12 @@ angular.module('angular-echarts.util', []).factory('util', function () {
             if (type === 'area') {
                 conf.type = 'line';
                 conf.itemStyle = { normal: { areaStyle: { type: 'default' } } };
+            }
+            if (serie.type === 'bar') {
+                conf.barWidth = 40;
+            }
+            if (serie.type === 'line') {
+              conf.itemStyle = serie.itemStyle;
             }
             // gauge chart need many special config
             if (type === 'gauge') {
@@ -1659,11 +1668,12 @@ angular.module('angular-echarts.theme').factory('macarons', function () {
                 // label
                 skipFirst: true,
                 margin: 3,
-                textStyle: { color: '#999999' }
+                textStyle: {
+                  color: '#999999'
+                }
             },
             axisTick: {
                 // 坐标轴线
-                show: false,
                 lineStyle: {
                     // 属性lineStyle控制线条样式
                     color: '#008acd',
@@ -1671,8 +1681,10 @@ angular.module('angular-echarts.theme').factory('macarons', function () {
                 }
             },
             splitLine: {
+                show : true,
                 // 分隔线
                 lineStyle: {
+                    type: 'dashed', //改变竖线样式
                     // 属性lineStyle（详见lineStyle）控制线条样式
                     color: ['#eee']
                 }
@@ -1704,10 +1716,11 @@ angular.module('angular-echarts.theme').factory('macarons', function () {
                 }
             },
             splitArea: {
-                show: true,
+                show: false,
                 areaStyle: { color: ['rgba(250,250,250,0.1)','rgba(200,200,200,0.1)'] }
             },
             splitLine: {
+                show: false,
                 // 分隔线
                 lineStyle: {
                     // 属性lineStyle（详见lineStyle）控制线条样式
@@ -1747,7 +1760,10 @@ angular.module('angular-echarts.theme').factory('macarons', function () {
         },
         // 折线图默认参数
         line: {
-            smooth: false,
+            itemStyle: {
+              normal: { color: '#4ED8D8'}
+            },
+            smooth: true,
             symbol: 'circle',
             // 拐点图形类型
             symbolSize: 3    // 拐点图形大小

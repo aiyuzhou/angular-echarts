@@ -15,7 +15,9 @@
     "baidu",
     "echarts"
   ],
-  "author": "wangshijun",
+  "author": {
+    "name": "wangshijun"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/wangshijun/angular-echarts/issues"
@@ -39,5 +41,35 @@
     "gulp-util": "~2.2.14",
     "gulp-wrap": "^0.3.0",
     "jshint-stylish": "~0.2.0"
-  }
+  },
+  "gitHead": "fc7181ee4e4dbe7d031c2f98a796adfe2a4a5e6d",
+  "_id": "angular-echarts@0.3.6",
+  "_shasum": "77a85c862bedb767fb63c543b51ee1959b38c432",
+  "_from": "angular-echarts@latest",
+  "_npmVersion": "3.7.3",
+  "_nodeVersion": "5.8.0",
+  "_npmUser": {
+    "name": "dxy-biz-developer",
+    "email": "zjw@dxy.cn"
+  },
+  "dist": {
+    "shasum": "77a85c862bedb767fb63c543b51ee1959b38c432",
+    "size": 27167,
+    "noattachment": false,
+    "tarball": "http://registry.npm.taobao.org/angular-echarts/download/angular-echarts-0.3.6.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "dxy-biz-developer",
+      "email": "zjw@dxy.cn"
+    }
+  ],
+  "_npmOperationalInternal": {
+    "host": "packages-16-east.internal.npmjs.com",
+    "tmp": "tmp/angular-echarts-0.3.6.tgz_1465814319054_0.3878707545809448"
+  },
+  "directories": {},
+  "publish_time": 1465814323620,
+  "_cnpm_publish_time": 1465814323620,
+  "_resolved": "https://registry.npm.taobao.org/angular-echarts/download/angular-echarts-0.3.6.tgz"
 }
